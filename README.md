@@ -32,7 +32,6 @@ ScoreboardAPI es una API para manejar scoreboards en Minecraft 1.8.8. Esta API p
 La configuración de la scoreboard se almacena en `scoreboard.yml` en el plugin principal. Aquí tienes un ejemplo de `scoreboard.yml`:
 
 ```yaml name=scoreboard.yml
-# Supports 32 Chars & PlaceholderAPI
 
 # ~ Booleans
 
@@ -41,9 +40,9 @@ FOOTER-ENABLED: true
 
 # ~ Main Settings
 
-TITLE: "&7%flower% &3&lOrbit &7%flower%"
+TITLE: "&7%flower% &3&lFrost &7%flower%"
 BARS: "&7&m-----------------------"
-FOOTER: "&7play.frostcraft.club"
+FOOTER: "&7play.frostdevelopment.club"
 TIME: "EST"
 
 # ~ Title Animated Settings
@@ -52,51 +51,32 @@ TITLE-ANIMATED:
   ENABLED: true
   INTERVAL: 0.3
   TITLE:
-    - "&f&lF&3&lrostCraft"
-    - "&b&lF&f&lr&3&lostCraft"
-    - "&b&lFr&f&lo&3&lstCraft"
-    - "&b&lFro&f&ls&3&ltCraft"
-    - "&b&lFros&f&lt&3&lCraft"
-    - "&b&lFrost&f&lC&3&lraft"
-    - "&b&lFrostC&f&lr&3&laft"
-    - "&b&lFrostCr&f&la&3&lft"
-    - "&b&lFrostCra&f&lf&3&lt"
-    - "&b&lFrostCraf&f&lt"
-    - "&b&lFrostCraft"
-    - "&b&l"
-    - "&7%flower% &b&lFrostCraft &f&lHub &7%flower%"
-    - "&7%flower% &b&lFrostCraft &f&lHub &7%flower%"
-    - "&7%flower% &b&lFrostCraft &f&lHub &7%flower%"
-    - "&3&l"
-    - "&7%flower% &b&lFrostCraft &f&lHub &7%flower%"
-    - "&7%flower% &b&lFrostCraft &f&lHub &7%flower%"
-    - "&7%flower% &b&lFrostCraft &f&lHub &7%flower%"
-    - "&3&l"
+    - "&f&lF&3&lrost"
+    - "&b&lF&f&lr&3&lost"
+    - "&b&lFr&f&lo&3&lst"
+    - "&b&lFro&f&ls&3&lt"
+    - "&b&lFros&f&lt&3&l"
+    - "&b&lFrost&f&lt"
+    - "&b&lFrost"
 
 # ~ Footer Animated Settings
 
 FOOTER-ANIMATED:
   ENABLED: true
-  INTERVAL: 1.5
+  INTERVAL: 2.0
   FOOTER:
-    - "&7ts.frostcraft.club"
-    - "&7play.frostcraft.club"
-    - "&7discord.gg/Jd2wMvj2mp"
-    - "&7frostcraft-store.tebex.io"
+    - "&7play.frostdevelopment.club"
 
 # ~ Lines
 
 LINES:
-  - "&b&lNombre:"
+  - "&b&lName:"
   - "&7%triangle-right% &f%name% &7(%player_ping%ms)"
   - ""
-  - "&b&lRango:"
+  - "&b&lRank:"
   - "&7%triangle-right% %phoenix_player_rank%"
   - ""
-  - "&b&lMonedas:"
-  - "&7%triangle-right% &f%pxcosmetics_player_coins%"
-  - ""
-  - "&b&lConectados:"
+  - "&b&lConnected:"
   - "&7%triangle-right% &f%bungee_all%/1000"
   - "%custom-timer%"
   - "%queue%"
