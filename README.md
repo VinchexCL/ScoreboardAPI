@@ -21,8 +21,8 @@ ScoreboardAPI es una API para manejar scoreboards en Minecraft 1.8.8. Esta API p
 </repository>
 
 <dependency>
-    <groupId>dev.vinchex</groupId>
-    <artifactId>scoreboard-api</artifactId>
+    <groupId>dev.vinchex.scoreboardapi</groupId>
+    <artifactId>ScoreboardAPI</artifactId>
     <version>1.0-SNAPSHOT</version>
 </dependency>
 
