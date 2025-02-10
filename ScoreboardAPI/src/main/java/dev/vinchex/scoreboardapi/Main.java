@@ -30,21 +30,26 @@ public class Main extends JavaPlugin {
     }
 
     public void setPlayerScoreboard(Player player, FileConfiguration config) {
-        boolean barsEnabled = config.getBoolean("BARS-ENABLED");
-        boolean footerEnabled = config.getBoolean("FOOTER-ENABLED");
-        String title = config.getString("TITLE");
-        String bars = config.getString("BARS");
-        String footer = config.getString("FOOTER");
-        String time = config.getString("TIME");
-        boolean titleAnimatedEnabled = config.getBoolean("TITLE-ANIMATED.ENABLED");
-        double titleAnimatedInterval = config.getDouble("TITLE-ANIMATED.INTERVAL");
+        boolean barsEnabled = config.getBoolean("BARS-ENABLED", true);
+        boolean footerEnabled = config.getBoolean("FOOTER-ENABLED", true);
+        String title = config.getString("TITLE", "");
+        String bars = config.getString("BARS", "");
+        String footer = config.getString("FOOTER", "");
+        String time = config.getString("TIME", "");
+        boolean titleAnimatedEnabled = config.getBoolean("TITLE-ANIMATED.ENABLED", false);
+        double titleAnimatedInterval = config.getDouble("TITLE-ANIMATED.INTERVAL", 0.3);
         List<String> titleAnimatedList = config.getStringList("TITLE-ANIMATED.TITLE");
-        boolean footerAnimatedEnabled = config.getBoolean("FOOTER-ANIMATED.ENABLED");
-        double footerAnimatedInterval = config.getDouble("FOOTER-ANIMATED.INTERVAL");
+        boolean footerAnimatedEnabled = config.getBoolean("FOOTER-ANIMATED.ENABLED", false);
+        double footerAnimatedInterval = config.getDouble("FOOTER-ANIMATED.INTERVAL", 1.5);
         List<String> footerAnimatedList = config.getStringList("FOOTER-ANIMATED.FOOTER");
         List<String> lines = config.getStringList("LINES");
 
         ScoreboardManager manager = Bukkit.getScoreboardManager();
+        if (manager == null) {
+            getLogger().severe("ScoreboardManager is null. Scoreboard cannot be set.");
+            return;
+        }
+
         Scoreboard board = manager.getNewScoreboard();
 
         Objective objective = board.registerNewObjective("test", "dummy");
@@ -65,14 +70,24 @@ public class Main extends JavaPlugin {
     }
 
     private void startAnimatedTitle(Player player, List<String> titleAnimatedList, double titleAnimatedInterval) {
+        if (titleAnimatedList == null || titleAnimatedList.isEmpty()) {
+            getLogger().severe("Title animation list is null or empty.");
+            return;
+        }
+
         new BukkitRunnable() {
             int index = 0;
 
             @Override
             public void run() {
-                player.getScoreboard().getObjective(DisplaySlot.SIDEBAR)
-                        .setDisplayName(ChatColor.translateAlternateColorCodes('&', PlaceholderAPI.setPlaceholders(player, titleAnimatedList.get(index))));
-                index = (index + 1) % titleAnimatedList.size();
+                if (player.getScoreboard().getObjective(DisplaySlot.SIDEBAR) != null) {
+                    player.getScoreboard().getObjective(DisplaySlot.SIDEBAR)
+                            .setDisplayName(ChatColor.translateAlternateColorCodes('&', PlaceholderAPI.setPlaceholders(player, titleAnimatedList.get(index))));
+                    index = (index + 1) % titleAnimatedList.size();
+                } else {
+                    getLogger().severe("Objective is null. Cannot set animated title.");
+                    cancel();
+                }
             }
         }.runTaskTimer(this, 0L, (long) (titleAnimatedInterval * 20));
     }
